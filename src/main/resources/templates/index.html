@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<head>
+    <title>Uniform VKU</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link type="text/css" rel="stylesheet" href="bootstrap.min.css" th:href="@{bootstrap.min.css}"/>
+</head>
+<body>
+<div class="col-3"></div>
+<div class="container col-6">
+    <h1>VKU uniform sales manager</h1>
+    <table class="table table-active">
+        <tr>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Birthday</th>
+            <th>Phone</th>
+            <th>Paid</th>
+            <th>Received</th>
+            <th>Actions</th>
+        </tr>
+        <tr th:each="student : ${students}">
+            <td th:text="${student.name}"></td>
+            <td th:text="${student.gender}"></td>
+            <td th:text="${student.birthday}"></td>
+            <td th:text="${student.phone}"></td>
+            <td th:text="${student.paid}"></td>
+            <td th:text="${student.received}"></td>
+            <td>
+                <a th:href="@{/edit?id={id}(id=${student.id})}" class="btn btn-primary">Edit</a>
+                <a th:href="@{/delete?id={id}(id=${student.id})}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+    </table>
+    <a href="/add" class="btn btn-success">Add</a>
+</div>
+</body>
+</html>

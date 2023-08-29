@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Record</title>
+    <link type="text/css" rel="stylesheet" href="bootstrap.min.css" th:href="@{bootstrap.min.css}"/>
+</head>
+<body>
+<div class="col-3"></div>
+<div class="container col-6">
+    <h1>New Record</h1>
+    <div class="col-md-auto">
+        <form th:object="${student}" th:action="@{save}" action="#" method="post">
+            <div>
+                <label th:text="Name" th:for="name"></label>
+                <input type="text" th:field="*{name}" class="form-control" placeholder="Name"/>
+            </div>
+            <div style="clear: both; display: block; height: 10px"></div>
+            <div>
+                <label th:text="Gender" th:for="gender"></label>
+                <input type="text" th:field="*{gender}" class="form-control" placeholder="Gender"/>
+            </div>
+            <div style="clear: both; display: block; height: 10px"></div>
+            <div>
+                <label th:text="Birthday" th:for="birthday"></label>
+                <input type="text" th:field="*{birthday}" class="form-control" placeholder="Birthday"/>
+            </div>
+            <div style="clear: both; display: block; height: 10px"></div>
+            <div>
+                <label th:text="Phone" th:for="phone"></label>
+                <input type="text" th:field="*{phone}" class="form-control" placeholder="Phone"/>
+            </div>
+            <div style="clear: both; display: block; height: 10px"></div>
+            <div>
+                <label th:text="Paid" th:for="paid"></label>
+                <input type="text" th:field="*{paid}" class="form-control" placeholder="Paid"/>
+            </div>
+            <div style="clear: both; display: block; height: 10px"></div>
+            <div>
+                <label th:text="Received" th:for="received"></label>
+                <input type="text" th:field="*{received}" class="form-control" placeholder="Received"/>
+            </div>
+            <div style="clear: both; display: block; height: 10px"></div>
+            <input type="submit" class="btn btn-success" value="Save"/>
+        </form>
+    </div>
+</div>
+</body>
+</html>
