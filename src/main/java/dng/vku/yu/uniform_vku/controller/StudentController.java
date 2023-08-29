@@ -42,7 +42,7 @@ public class StudentController {
     @RequestMapping(value = "save", method = RequestMethod.POST)
     public String save(Student student) {
         studentService.saveStudent(student);
-        return "redirect:/";
+        return "editStudent";
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)

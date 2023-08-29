@@ -10,38 +10,49 @@
 <div class="container col-6">
     <h1>Edit Record</h1>
     <form th:object="${student}" th:action="@{save}" action="#" method="post">
-        <input type="hidden" th:field="*{id}">
-        <div>
-            <label th:text="Name" th:for="name"></label>
-            <input type="text" th:field="*{name}" class="form-control" placeholder="Name"/>
+        <div class="form-group row">
+            <div class="col-sm-6">
+                <input type="hidden" th:field="*{id}">
+                <div>
+                    <label th:text="Name" th:for="name"></label>
+                    <input type="text" th:field="*{name}" class="form-control" placeholder="Name"/>
+                </div>
+                <div style="clear: both; display: block; height: 10px"></div>
+                <div>
+                    <label th:text="Phone" th:for="phone"></label>
+                    <input type="text" th:field="*{phone}" class="form-control" placeholder="Phone"/>
+                </div>
+                <div style="clear: both; display: block; height: 10px"></div>
+                <div>
+                    <label th:text="Class" th:for="class_name"></label>
+                    <input type="text" th:field="*{class_name}" class="form-control" placeholder="Class"/>
+                </div>
+                <div style="clear: both; display: block; height: 10px"></div>
+                <div>
+                    <label th:text="Gender" th:for="gender"></label>
+                    <input type="text" th:field="*{gender}" class="form-control" placeholder="Gender"/>
+                </div>
+                <div style="clear: both; display: block; height: 10px"></div>
+                <div>
+                    <label th:text="Birthday" th:for="birthday"></label>
+                    <input type="text" th:field="*{birthday}" class="form-control" placeholder="Birthday"/>
+                </div>
+                <div style="clear: both; display: block; height: 10px"></div>
+                <div>
+                    <label th:text="Paid" th:for="paid"></label>
+                    <input type="text" th:field="*{paid}" class="form-control" placeholder="Paid"/>
+                </div>
+                <div style="clear: both; display: block; height: 10px"></div>
+                <div>
+                    <label th:text="Received" th:for="received"></label>
+                    <input type="text" th:field="*{received}" class="form-control" placeholder="Received"/>
+                </div>
+                <div style="clear: both; display: block; height: 10px"></div>
+            </div>
+            <img class="col-sm-6" th:src="@{https://chart.googleapis.com/chart(cht=qr, chs=200x200, chl=*{verificationCode})}">
         </div>
-        <div style="clear: both; display: block; height: 10px"></div>
-        <div>
-            <label th:text="Gender" th:for="gender"></label>
-            <input type="text" th:field="*{gender}" class="form-control" placeholder="Gender"/>
-        </div>
-        <div style="clear: both; display: block; height: 10px"></div>
-        <div>
-            <label th:text="Birthday" th:for="birthday"></label>
-            <input type="text" th:field="*{birthday}" class="form-control" placeholder="Birthday"/>
-        </div>
-        <div style="clear: both; display: block; height: 10px"></div>
-        <div>
-            <label th:text="Phone" th:for="phone"></label>
-            <input type="text" th:field="*{phone}" class="form-control" placeholder="Phone"/>
-        </div>
-        <div style="clear: both; display: block; height: 10px"></div>
-        <div>
-            <label th:text="Paid" th:for="paid"></label>
-            <input type="text" th:field="*{paid}" class="form-control" placeholder="Paid"/>
-        </div>
-        <div style="clear: both; display: block; height: 10px"></div>
-        <div>
-            <label th:text="Received" th:for="received"></label>
-            <input type="text" th:field="*{received}" class="form-control" placeholder="Received"/>
-        </div>
-        <div style="clear: both; display: block; height: 10px"></div>
         <input type="submit" class="btn btn-success" value="Save"/>
+        <a href="/add" class="btn btn-success">Add new</a>
     </form>
 </div>
 </body>

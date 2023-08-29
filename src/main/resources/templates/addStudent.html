@@ -17,6 +17,16 @@
             </div>
             <div style="clear: both; display: block; height: 10px"></div>
             <div>
+                <label th:text="Phone" th:for="phone"></label>
+                <input type="text" th:field="*{phone}" class="form-control" placeholder="Phone"/>
+            </div>
+            <div style="clear: both; display: block; height: 10px"></div>
+            <div>
+                <label th:text="Class" th:for="class_name"></label>
+                <input type="text" th:field="*{class_name}" class="form-control" placeholder="Class"/>
+            </div>
+            <div style="clear: both; display: block; height: 10px"></div>
+            <div>
                 <label th:text="Gender" th:for="gender"></label>
                 <input type="text" th:field="*{gender}" class="form-control" placeholder="Gender"/>
             </div>
@@ -24,11 +34,6 @@
             <div>
                 <label th:text="Birthday" th:for="birthday"></label>
                 <input type="text" th:field="*{birthday}" class="form-control" placeholder="Birthday"/>
-            </div>
-            <div style="clear: both; display: block; height: 10px"></div>
-            <div>
-                <label th:text="Phone" th:for="phone"></label>
-                <input type="text" th:field="*{phone}" class="form-control" placeholder="Phone"/>
             </div>
             <div style="clear: both; display: block; height: 10px"></div>
             <div>

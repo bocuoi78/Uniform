@@ -12,18 +12,20 @@
     <table class="table table-active">
         <tr>
             <th>Name</th>
+            <th>Phone</th>
+            <th>Class</th>
             <th>Gender</th>
             <th>Birthday</th>
-            <th>Phone</th>
             <th>Paid</th>
             <th>Received</th>
             <th>Actions</th>
         </tr>
         <tr th:each="student : ${students}">
             <td th:text="${student.name}"></td>
+            <td th:text="${student.phone}"></td>
+            <td th:text="${student.class_name}"></td>
             <td th:text="${student.gender}"></td>
             <td th:text="${student.birthday}"></td>
-            <td th:text="${student.phone}"></td>
             <td th:text="${student.paid}"></td>
             <td th:text="${student.received}"></td>
             <td>
