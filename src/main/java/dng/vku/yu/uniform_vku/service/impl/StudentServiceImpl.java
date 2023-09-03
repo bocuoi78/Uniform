@@ -22,16 +22,9 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void saveStudent(Student student) {
-//        Student newStudent = new Student();
-//        newStudent.setName(student.getName());
-//        newStudent.setPhone(student.getPhone());
-//        newStudent.setGender(student.getGender());
-//        newStudent.setBirthday(student.getBirthday());
-//        newStudent.setClass_name(student.getClass_name());
-//        newStudent.setSize(student.getSize());
-//        newStudent.setPaid(student.getPaid());
-//        newStudent.setReceived(student.getReceived());
-//        newStudent.setNote(student.getNote());
+        if(student.getId()!=null) {
+            student.setReceived(studentRepository.findById(student.getId()).get().getReceived());
+        }
         Student savedStudent = studentRepository.save(student);
         String pText = savedStudent.getId().toString();
         String algorithm = "SHA3-256";

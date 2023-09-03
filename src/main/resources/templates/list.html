@@ -4,6 +4,23 @@
     <title>VKU Uniform</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}"/>
+    <style type='text/css'>table {
+        counter-reset: rowNumber;
+    }
+    table tr:not(:first-child) {
+        counter-increment: rowNumber;
+    }
+
+    table tr td:first-child::before {
+        content: counter(rowNumber);
+        text-align: center;
+        min-width: 1em;
+        margin-right: 0.5em;
+    }
+    table tr td:first-child {
+        text-align: center;
+    }
+    </style>
 </head>
 <body>
 <div class="col-3"></div>
@@ -11,7 +28,8 @@
     <h1>VKU uniform sales manager</h1>
     <a href="/add" class="btn btn-success">Thêm mới</a>
     <table class="table table-active">
-        <tr>
+        <tr class="fble_htr">
+            <th>STT</th>
             <th>Họ và Tên</th>
             <th>Số điện thoại</th>
             <th>Lớp</th>
@@ -22,6 +40,7 @@
             <th>Thao tác</th>
         </tr>
         <tr th:each="student : ${students}">
+            <td></td>
             <td th:text="${student.name}"></td>
             <td th:text="${student.phone}"></td>
             <td th:text="${student.class_name}"></td>
