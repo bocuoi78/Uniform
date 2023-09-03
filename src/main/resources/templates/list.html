@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<head>
+    <title>VKU Uniform</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}"/>
+</head>
+<body>
+<div class="col-3"></div>
+<div class="container col-8">
+    <h1>VKU uniform sales manager</h1>
+    <a href="/add" class="btn btn-success">Thêm mới</a>
+    <table class="table table-active">
+        <tr>
+            <th>Họ và Tên</th>
+            <th>Số điện thoại</th>
+            <th>Lớp</th>
+            <th>Giới tính</th>
+            <th>Ngày sinh</th>
+            <th>Size áo</th>
+            <th>Đã nhận</th>
+            <th>Thao tác</th>
+        </tr>
+        <tr th:each="student : ${students}">
+            <td th:text="${student.name}"></td>
+            <td th:text="${student.phone}"></td>
+            <td th:text="${student.class_name}"></td>
+            <td th:text="${student.gender} ? 'Nam' : 'Nữ'"></td>
+            <td th:text="${student.birthday}"></td>
+            <td th:class="${student.size}"></td>
+            <td>
+                <a th:href="@{/receive?id={id}(id=${student.id})}" th:text="${student.received} ? 'Đã nhận' : 'Chưa nhận'" class="btn btn-secondary" id="receive-btn"></a>
+            </td>
+            <td>
+                <a th:href="@{/edit?id={id}(id=${student.id})}" class="btn btn-primary">Edit</a>
+                <a th:href="@{/delete?id={id}(id=${student.id})}" class="btn btn-danger" id="del">Delete</a>
+            </td>
+        </tr>
+    </table>
+    <script th:inline="javascript">
+        const s1 = document.getElementsByClassName("1")
+        for(var s in s1) {
+            s1[s].innerHTML = "S";
+        }
+        const s2 = document.getElementsByClassName("2")
+        for(var s in s2) {
+            s2[s].innerHTML = "M";
+        }
+        const s3 = document.getElementsByClassName("3")
+        for(var s in s3) {
+            s3[s].innerHTML = "L";
+        }
+        const s4 = document.getElementsByClassName("4")
+        for(var s in s4) {
+            s4[s].innerHTML = "XL";
+        }
+        const s5 = document.getElementsByClassName("5")
+        for(var s in s5) {
+            s5[s].innerHTML = "XXL";
+        }
+        const s6 = document.getElementsByClassName("6")
+        for(var s in s6) {
+            s6[s].innerHTML = "XXXL";
+        }
+    </script>
+</div>
+<!--<script>-->
+<!--    if (localStorage.getItem('scroll')!=null) {-->
+<!--        $(window).scrollTop(localStorage.getItem('scroll'));-->
+<!--        console.log($(window).scrollTop());-->
+<!--    }-->
+<!--</script>-->
+<!--<script>-->
+<!--    document.getElementById('del').addEventListener('click', function () {-->
+<!--        localStorage.setItem('scroll', $(window).scrollTop());-->
+<!--    })-->
+<!--</script>-->
+</body>
+<script>
+    setTimeout(() => {
+        document.location.reload();
+    }, 3000);
+</script>
+</html>

@@ -1,40 +1,43 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
 <head>
-    <title>Uniform VKU</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link type="text/css" rel="stylesheet" href="bootstrap.min.css" th:href="@{bootstrap.min.css}"/>
+    <title>VKU Uniform</title>
 </head>
 <body>
-<div class="col-3"></div>
-<div class="container col-6">
-    <h1>VKU uniform sales manager</h1>
-    <table class="table table-active">
-        <tr>
-            <th>Name</th>
-            <th>Phone</th>
-            <th>Class</th>
-            <th>Gender</th>
-            <th>Birthday</th>
-            <th>Paid</th>
-            <th>Received</th>
-            <th>Actions</th>
-        </tr>
-        <tr th:each="student : ${students}">
-            <td th:text="${student.name}"></td>
-            <td th:text="${student.phone}"></td>
-            <td th:text="${student.class_name}"></td>
-            <td th:text="${student.gender}"></td>
-            <td th:text="${student.birthday}"></td>
-            <td th:text="${student.paid}"></td>
-            <td th:text="${student.received}"></td>
-            <td>
-                <a th:href="@{/edit?id={id}(id=${student.id})}" class="btn btn-primary">Edit</a>
-                <a th:href="@{/delete?id={id}(id=${student.id})}" class="btn btn-danger">Delete</a>
-            </td>
-        </tr>
-    </table>
-    <a href="/add" class="btn btn-success">Add</a>
-</div>
+<a href="chrome://flags/#unsafely-treat-insecure-origin-as-secure" target="_blank">Unsafely treat insecure origin as secure</a>
+<div id="qr-reader" style="width: 960px"></div>
+<div id="qr-reader-results"></div>
 </body>
+<script th:src="@{js/html5-qrcode.min.js}"></script>
+<script>
+    function docReady(fn) {
+        // see if DOM is already available
+        if (document.readyState === "complete"
+            || document.readyState === "interactive") {
+            // call on next available tick
+            setTimeout(fn, 1);
+        } else {
+            document.addEventListener("DOMContentLoaded", fn);
+        }
+    }
+
+    docReady(function () {
+        var resultContainer = document.getElementById('qr-reader-results');
+        var lastResult, countResults = 0;
+        function onScanSuccess(decodedText, decodedResult) {
+            if (decodedText !== lastResult) {
+                ++countResults;
+                lastResult = decodedText;
+                // Handle on success condition with the decoded message.
+                console.log(`Scan result ${decodedText}`, decodedResult);
+                // resultContainer.innerHTML = decodedText;
+                window.location = `/check?code=${decodedText}`;
+            }
+        }
+
+        var html5QrcodeScanner = new Html5QrcodeScanner(
+            "qr-reader", { fps: 10, qrbox: 500 });
+        html5QrcodeScanner.render(onScanSuccess);
+    });
+</script>
 </html>

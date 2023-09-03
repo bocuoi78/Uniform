@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<head>
+    <meta charset="UTF-8">
+    <title>VKU Uniform</title>
+    <link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{css/bootstrap-4-5-3.min.css}">
+    <link rel="stylesheet" th:href="@{css/bootstrap-datepicker.min.css}">
+    <link rel="stylesheet" th:href="@{css/font-awesome.min.css}">
+    <script th:src="@{jquery/jquery.min.js}"></script>
+    <script th:src="@{js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{js/bootstrap-datepicker.min.js}"></script>
+</head>
+<body>
+<div class="col-3"></div>
+<div class="container col-8">
+    <h1>Chỉnh sửa</h1>
+    <form th:object="${student}" th:action="@{save}" action="#" method="post">
+        <div class="form-group row">
+            <div class="col-sm-4">
+                <input type="hidden" th:field="*{id}">
+                <div>
+                    <label th:for="name">Họ và Tên:</label>
+                    <input type="text" th:field="*{name}" class="form-control" placeholder="Họ và Tên"/>
+                </div>
+                <div style="clear: both; display: block; height: 10px"></div>
+                <div>
+                    <label th:for="phone">Số điện thoại:</label>
+                    <input type="text" th:field="*{phone}" class="form-control" placeholder="Số điện thoại"/>
+                </div>
+                <div style="clear: both; display: block; height: 10px"></div>
+                <div>
+                    <label th:for="class_name">Lớp:</label>
+                    <input type="text" th:field="*{class_name}" class="form-control" placeholder="Lớp"/>
+                </div>
+                <div style="clear: both; display: block; height: 10px"></div>
+                <div>
+                    <label th:for="gender">Giới tính:</label>
+                    <p/>
+                    <label class="mr-3">
+                        <input type="radio" class="mr-1" th:checked="*{gender}" name="gender" value="true"> Nam
+                    </label>
+                    <label class="mr-3">
+                        <input type="radio" class="mr-1" th:checked="!*{gender}" name="gender" value="false"> Nữ
+                    </label>
+                </div>
+                <div>
+                    <label th:for="birthday">Ngày sinh:</label>
+                    <div class="input-group date" id="datepicker">
+                        <input type="text" class="form-control" th:field="*{birthday}" placeholder="dd/mm/yyyy">
+                        <span class="input-group-append">
+                            <span class="input-group-text bg-white">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    $(function() {
+                        $('#datepicker').datepicker({
+                            format: 'dd/mm/yyyy'
+                        });
+                    });
+                </script>
+                <div style="clear: both; display: block; height: 10px"></div>
+                <div>
+                    <label th:for="size">Size áo:</label>
+                    <select class="form-select" th:field="*{size}" aria-label="Default select example">
+                        <option th:value="1">Size S</option>
+                        <option th:value="2">Size M</option>
+                        <option th:value="3">Size L</option>
+                        <option th:value="4">Size XL</option>
+                        <option th:value="5">Size XXL</option>
+                        <option th:value="6">Size XXXL</option>
+                    </select>
+                </div>
+                <div style="clear: both; display: block; height: 10px"></div>
+                <div>
+                    <label th:for="note">Ghi chú:</label>
+                    <textarea type="textarea" th:field="*{note}" class="form-control" placeholder="Ghi chú" rows="5"></textarea>
+                </div>
+                <div style="clear: both; display: block; height: 10px"></div>
+                <a th:href="@{/receive?id={id}(id=${student.id})}" th:text="${student.received} ? 'Đã nhận' : 'Chưa nhận'" class="btn btn-primary" id="receive-btn"></a>
+                <div style="clear: both; display: block; height: 50px"></div>
+            </div>
+            <img class="col-sm-8" th:src="@{https://chart.googleapis.com/chart(cht=qr, chs=200x200, chl=*{verificationCode})}">
+        </div>
+        <input type="submit" class="btn btn-success" value="Lưu lại"/>
+        <a th:href="@{/delete?id={id}(id=*{id})}" class="btn btn-danger">Xóa</a>
+        <a href="/add" class="btn btn-success">Thêm mới</a>
+    </form>
+</div>
+<!--<script>-->
+<!--    $("#pay_btn").click(function() {-->
+<!--        $(this).toggleClass('btn-danger btn-success');-->
+<!--    });-->
+<!--</script>-->
+</body>
+</html>

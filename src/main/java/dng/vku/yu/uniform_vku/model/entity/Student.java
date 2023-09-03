@@ -38,11 +38,14 @@ public class Student {
     @Column(name = "BIRTHDAY")
     private Date birthday;
 
-    @Column(name = "PAID", nullable = false)
-    private Boolean paid;
+    @Column(name = "PAID")
+    private Boolean paid = true;
 
-    @Column(name = "RECEIVED", nullable = false)
-    private Boolean received;
+    @Column(name = "RECEIVED")
+    private Boolean received = false;
+
+    @Column(name = "SIZE")
+    private Integer size;
 
     @Column(name = "CREATED_BY", length = 100)
     private String createdBy;
@@ -60,6 +63,9 @@ public class Student {
 
     @Column(name = "VERIFICATION_CODE", length = 64)
     private String verificationCode;
+
+    @Column(name = "note", length = 65535)
+    private String note;
 
     @PrePersist
     protected void onCreate() {

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<head>
+    <meta charset="UTF-8">
+    <title>VKU Uniform</title>
+    <link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}"/>
+</head>
+<body>
+<div class="col-3"></div>
+<div class="container col-6">
+    <h1>Kiểm tra</h1>
+    <form th:object="${student}" th:action="@{./}" action="#" method="post">
+        <input type="hidden" th:field="*{id}">
+        <div>
+            <label th:for="name">Họ và Tên:</label>
+            <input type="text" disabled th:field="*{name}" class="form-control"/>
+        </div>
+        <div style="clear: both; display: block; height: 10px"></div>
+        <div>
+            <label th:for="phone">Số điện thoại:</label>
+            <input type="text" disabled th:field="*{phone}" class="form-control"/>
+        </div>
+        <div style="clear: both; display: block; height: 10px"></div>
+        <div>
+            <label th:for="class_name">Lớp:</label>
+            <input type="text" disabled th:field="*{class_name}" class="form-control"/>
+        </div>
+        <div style="clear: both; display: block; height: 10px"></div>
+        <div>
+            <label th:for="gender">Giới tính:</label>
+            <p/>
+            <label class="mr-3">
+                <input type="radio" disabled class="mr-1" th:checked="*{gender}" name="gender" value="true"> Nam
+            </label>
+            <label class="mr-3">
+                <input type="radio" disabled class="mr-1" th:checked="!*{gender}" name="gender" value="false"> Nữ
+            </label>
+        </div>
+<!--        <div style="clear: both; display: block; height: 10px"></div>-->
+        <div>
+            <label th:for="birthday">Ngày sinh:</label>
+            <input type="text" disabled th:field="*{birthday}" class="form-control"/>
+        </div>
+        <div style="clear: both; display: block; height: 10px"></div>
+        <div>
+            <label th:for="size">Size áo:</label>
+            <input type="text" disabled id="size" class="form-control"/>
+            <script th:inline="javascript">
+                /*<![CDATA[*/
+
+                var s = /*[[${student.size}]]*/ '';
+                switch (s) {
+                    case 1:
+                        size_text = "Size S";
+                        break;
+                    case 2:
+                        size_text = "Size M";
+                        break;
+                    case 3:
+                        size_text = "Size L";
+                        break;
+                    case 4:
+                        size_text = "Size XL";
+                        break;
+                    case 5:
+                        size_text = "Size XXL";
+                        break;
+                    case 6:
+                        size_text = "Size XXXL";
+                }
+                document.getElementById("size").value = size_text;
+
+                /*]]>*/
+            </script>
+        </div>
+        <div>
+            <label th:for="note">Ghi chú:</label>
+            <textarea type="textarea" disabled th:field="*{note}" class="form-control" rows="5"></textarea>
+        </div>
+        <div style="clear: both; display: block; height: 10px"></div>
+        <input type="submit" class="btn btn-success" value="Đã nhận"/>
+    </form>
+</div>
+</body>
+</html>

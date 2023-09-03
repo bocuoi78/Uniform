@@ -7,10 +7,10 @@ import java.util.Optional;
 
 public interface StudentService {
     List<Student> getAllStudent();
-
     void saveStudent(Student student);
-
     void deleteStudent(Long id);
-
+    void pay(Long id);
+    void receive(Long id);
+    Optional<Student> findStudentByVerificationCode(String verificationCode);
     Optional<Student> findStudentById(Long id);
 }
