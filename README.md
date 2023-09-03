@@ -9,5 +9,5 @@
 - JDK 17
 - MySQL Server
 ## Thông tin liên hệ
-- Facebook: ![](https://www.facebook.com/ndkhanh18it4)
+- Facebook: [ndkhanh18it4](https://www.facebook.com/ndkhanh18it4)
 - Zalo: 0396060066
