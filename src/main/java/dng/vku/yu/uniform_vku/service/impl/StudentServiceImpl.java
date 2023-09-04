@@ -5,9 +5,11 @@ import dng.vku.yu.uniform_vku.repository.StudentRepository;
 import dng.vku.yu.uniform_vku.service.StudentService;
 import dng.vku.yu.uniform_vku.util.ShaUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,8 +18,9 @@ public class StudentServiceImpl implements StudentService {
     @Autowired private StudentRepository studentRepository;
 
     @Override
-    public List<Student> getAllStudent() {
-        return (List<Student>) studentRepository.findAll();
+    public List<Student> getAllStudent(Date fromTime, Date toTime) {
+//        return (List<Student>) studentRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
+        return (List<Student>) studentRepository.findAllBetweenDate(fromTime, toTime);
     }
 
     @Override

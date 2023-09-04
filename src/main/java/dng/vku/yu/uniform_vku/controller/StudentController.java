@@ -13,11 +13,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
-import java.net.http.HttpRequest;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Controller
@@ -31,11 +34,19 @@ public class StudentController {
     }
 
     @RequestMapping("/list")
-    public String list(Model model) {
-        List<Student> students = studentService.getAllStudent();
-
+    public String list(
+            Model model,
+            @RequestParam (required = false) String fromTime,
+            @RequestParam (required = false) String toTime
+    ) throws ParseException {
+        DateTimeFormatter date = DateTimeFormatter.ofPattern("dd/MM/yyy");
+        LocalDateTime now = LocalDateTime.now();
+        if (fromTime==null | Objects.equals(fromTime, "")) fromTime = date.format(now);
+        if (toTime==null | Objects.equals(toTime, "")) toTime = date.format(now);
+        Date fromTimeF = new SimpleDateFormat("dd/MM/yyy HH:mm:ss").parse(fromTime + " 00:00:00");
+        Date toTimeF = new SimpleDateFormat("dd/MM/yyy HH:mm:ss").parse(toTime + " 23:59:59");
+        List<Student> students = studentService.getAllStudent(fromTimeF, toTimeF);
         model.addAttribute("students", students);
-
         return "list";
     }
 
@@ -84,7 +95,18 @@ public class StudentController {
     }
 
     @RequestMapping("/export")
-    public String exportIntoExcelFile(HttpServletResponse response) throws IOException {
+    public String exportIntoExcelFile(
+            HttpServletResponse response,
+            @RequestParam (required = false) String fromTime,
+            @RequestParam (required = false) String toTime
+    ) throws IOException, ParseException {
+        DateTimeFormatter date = DateTimeFormatter.ofPattern("dd/MM/yyy");
+        LocalDateTime now = LocalDateTime.now();
+        if (fromTime==null | Objects.equals(fromTime, "")) fromTime = date.format(now);
+        if (toTime==null | Objects.equals(toTime, "")) toTime = date.format(now);
+        Date fromTimeF = new SimpleDateFormat("dd/MM/yyy HH:mm:ss").parse(fromTime + " 00:00:00");
+        Date toTimeF = new SimpleDateFormat("dd/MM/yyy HH:mm:ss").parse(toTime + " 23:59:59");
+        List<Student> students = studentService.getAllStudent(fromTimeF, toTimeF);
         response.setContentType("application/octet-stream");
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
         String currentDateTime = dateFormatter.format(new Date());
@@ -93,7 +115,7 @@ public class StudentController {
         String headerValue = "attachment; filename=uniform" + currentDateTime + ".xlsx";
         response.setHeader(headerKey, headerValue);
 
-        List <Student> listOfStudents = studentService.getAllStudent();
+        List <Student> listOfStudents = studentService.getAllStudent(fromTimeF, toTimeF);
         ExcelGenerator generator = new ExcelGenerator(listOfStudents);
         generator.generateExcelFile(response);
         return "redirect:/list";

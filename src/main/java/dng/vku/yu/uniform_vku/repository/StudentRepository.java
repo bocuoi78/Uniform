@@ -7,6 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,4 +18,6 @@ public interface StudentRepository extends CrudRepository<Student, Long>, JpaRep
     Optional<Student> findByVerificationCode(String aCode);
     @Query("update Student st set st.received=:newReceived where st.id = :id")
     void updateReceivedById(@Param("id") Long id, @Param("newReceived") Boolean received);
+    @Query("select st from Student st where st.createdOn>:fromTime and st.createdOn<:toTime order by st.id DESC")
+    List<Student> findAllBetweenDate(Date fromTime, Date toTime);
 }

@@ -4,28 +4,67 @@
     <title>VKU Uniform</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}"/>
-    <style type='text/css'>table {
-        counter-reset: rowNumber;
-    }
-    table tr:not(:first-child) {
-        counter-increment: rowNumber;
-    }
+    <link rel="stylesheet" th:href="@{css/bootstrap-4-5-3.min.css}">
+    <link rel="stylesheet" th:href="@{css/bootstrap-datepicker.min.css}">
+    <link rel="stylesheet" th:href="@{css/font-awesome.min.css}">
+    <script th:src="@{jquery/jquery.min.js}"></script>
+    <script th:src="@{js/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{js/bootstrap-datepicker.min.js}"></script>
+    <style type='text/css'>
+        .table-active {
+            counter-reset: rowNumber;
+        }
+        .table-active tr:not(:first-child) {
+            counter-increment: rowNumber;
+        }
 
-    table tr td:first-child::before {
-        content: counter(rowNumber);
-        text-align: center;
-        min-width: 1em;
-        margin-right: 0.5em;
-    }
-    table tr td:first-child {
-        text-align: center;
-    }
+        .table-active tr td:first-child::before {
+            content: counter(rowNumber);
+        }
+        .table-active tr td:first-child {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
 <div class="col-3"></div>
 <div class="container col-8">
     <h1>VKU uniform sales manager</h1>
+    <form action="/list">
+        <div class="form-row">
+            <div class="col-auto">
+                <label for="fromTime">Từ ngày: </label>
+            </div>
+            <div class="col-auto">
+                <div class="input-group date" id="datepicker1">
+                    <input type="text" id="fromTime" placeholder="dd/mm/yyyy" name="fromTime">
+                    <span class="input-group-append"></span>
+                </div>
+            </div>
+            <div class="col-auto">
+                <label for="toTime">Đến ngày: </label>
+            </div>
+            <div class="col-auto">
+                <div class="input-group date col" id="datepicker2">
+                    <input type="text" id="toTime" placeholder="dd/mm/yyyy" name="toTime">
+                    <span class="input-group-append"></span>
+                </div>
+            </div>
+            <script type="text/javascript">
+                $(function() {
+                    $('#datepicker1').datepicker({
+                        format: 'dd/mm/yyyy',
+                    });
+                    $('#datepicker2').datepicker({
+                        format: 'dd/mm/yyyy'
+                    });
+                });
+            </script>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-success">Cập nhật</button>
+            </div>
+        </div>
+    </form>
     <a href="/add" class="btn btn-success">Thêm mới</a>
     <table class="table table-active">
         <tr class="fble_htr">
@@ -95,9 +134,9 @@
 <!--    })-->
 <!--</script>-->
 </body>
-<script>
-    setTimeout(() => {
-        document.location.reload();
-    }, 3000);
-</script>
+<!--<script>-->
+<!--    setTimeout(() => {-->
+<!--        document.location.reload();-->
+<!--    }, 3000);-->
+<!--</script>-->
 </html>
