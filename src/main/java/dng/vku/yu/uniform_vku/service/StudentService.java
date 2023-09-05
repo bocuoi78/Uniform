@@ -7,7 +7,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface StudentService {
-    List<Student> getAllStudent(Date fromTime, Date toTime);
+    List<Student> getAllStudent();
+    List<Student> getStudents(Date fromTime, Date toTime);
     void saveStudent(Student student);
     void deleteStudent(Long id);
     void pay(Long id);

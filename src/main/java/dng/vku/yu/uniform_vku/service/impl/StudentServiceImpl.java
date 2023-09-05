@@ -18,7 +18,13 @@ public class StudentServiceImpl implements StudentService {
     @Autowired private StudentRepository studentRepository;
 
     @Override
-    public List<Student> getAllStudent(Date fromTime, Date toTime) {
+    public List<Student> getAllStudent() {
+//        return (List<Student>) studentRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
+        return (List<Student>) studentRepository.findAll();
+    }
+
+    @Override
+    public List<Student> getStudents(Date fromTime, Date toTime) {
 //        return (List<Student>) studentRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
         return (List<Student>) studentRepository.findAllBetweenDate(fromTime, toTime);
     }
@@ -27,6 +33,8 @@ public class StudentServiceImpl implements StudentService {
     public void saveStudent(Student student) {
         if(student.getId()!=null) {
             student.setReceived(studentRepository.findById(student.getId()).get().getReceived());
+            student.setCreatedOn(studentRepository.findById(student.getId()).get().getCreatedOn());
+            student.setUpdatedOn(studentRepository.findById(student.getId()).get().getUpdatedOn());
         }
         Student savedStudent = studentRepository.save(student);
         String pText = savedStudent.getId().toString();

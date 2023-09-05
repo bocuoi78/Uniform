@@ -33,6 +33,13 @@ public class StudentController {
         return "index";
     }
 
+    @RequestMapping("/list-all")
+    public String listAll(Model model) {
+        List<Student> students = studentService.getAllStudent();
+        model.addAttribute("students", students);
+        return "list-all";
+    }
+
     @RequestMapping("/list")
     public String list(
             Model model,
@@ -45,7 +52,7 @@ public class StudentController {
         if (toTime==null | Objects.equals(toTime, "")) toTime = date.format(now);
         Date fromTimeF = new SimpleDateFormat("dd/MM/yyy HH:mm:ss").parse(fromTime + " 00:00:00");
         Date toTimeF = new SimpleDateFormat("dd/MM/yyy HH:mm:ss").parse(toTime + " 23:59:59");
-        List<Student> students = studentService.getAllStudent(fromTimeF, toTimeF);
+        List<Student> students = studentService.getStudents(fromTimeF, toTimeF);
         model.addAttribute("students", students);
         return "list";
     }
@@ -106,7 +113,7 @@ public class StudentController {
         if (toTime==null | Objects.equals(toTime, "")) toTime = date.format(now);
         Date fromTimeF = new SimpleDateFormat("dd/MM/yyy HH:mm:ss").parse(fromTime + " 00:00:00");
         Date toTimeF = new SimpleDateFormat("dd/MM/yyy HH:mm:ss").parse(toTime + " 23:59:59");
-        List<Student> students = studentService.getAllStudent(fromTimeF, toTimeF);
+
         response.setContentType("application/octet-stream");
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
         String currentDateTime = dateFormatter.format(new Date());
@@ -115,9 +122,25 @@ public class StudentController {
         String headerValue = "attachment; filename=uniform" + currentDateTime + ".xlsx";
         response.setHeader(headerKey, headerValue);
 
-        List <Student> listOfStudents = studentService.getAllStudent(fromTimeF, toTimeF);
+        List <Student> listOfStudents = studentService.getStudents(fromTimeF, toTimeF);
         ExcelGenerator generator = new ExcelGenerator(listOfStudents);
         generator.generateExcelFile(response);
         return "redirect:/list";
+    }
+
+    @RequestMapping("/export-all")
+    public String exportAllIntoExcelFile(HttpServletResponse response) throws IOException {
+        response.setContentType("application/octet-stream");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=uniform" + currentDateTime + ".xlsx";
+        response.setHeader(headerKey, headerValue);
+
+        List<Student> listOfStudents = studentService.getAllStudent();
+        ExcelGenerator generator = new ExcelGenerator(listOfStudents);
+        generator.generateExcelFile(response);
+        return "redirect:/list-all";
     }
 }

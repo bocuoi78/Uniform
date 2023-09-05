@@ -6,6 +6,22 @@
     <link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}"/>
 </head>
 <body>
+<nav class="navbar navbar-expand-sm bg-light navbar-light">
+    <a class="navbar-brand" th:href="@{./}">
+        <img th:src="@{image/logo-VKU.jpg}" alt="logo" style="width:40px;">
+    </a>
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/list}">Danh sách</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{./add}">Thêm mới</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{./export}">Xuất file</a>
+        </li>
+    </ul>
+</nav>
 <div class="col-3"></div>
 <div class="container col-6">
     <h1>Kiểm tra</h1>
@@ -78,7 +94,8 @@
             <textarea type="textarea" disabled th:field="*{note}" class="form-control" rows="5"></textarea>
         </div>
         <div style="clear: both; display: block; height: 10px"></div>
-        <input type="submit" class="btn btn-success" value="Đã nhận"/>
+<!--        <input type="submit" class="btn btn-success" value="Đã nhận"/>-->
+        <a th:href="@{/receive?id={id}(id=${student.id})}" th:text="${student.received} ? 'Đã nhận' : 'Chưa nhận'" class="btn btn-success" id="receive-btn"></a>
     </form>
 </div>
 </body>
