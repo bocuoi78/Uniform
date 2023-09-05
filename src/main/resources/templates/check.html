@@ -67,22 +67,40 @@
                 var s = /*[[${student.size}]]*/ '';
                 switch (s) {
                     case 1:
-                        size_text = "Size S";
+                        size_text = "Nam S";
                         break;
                     case 2:
-                        size_text = "Size M";
+                        size_text = "Nam M";
                         break;
                     case 3:
-                        size_text = "Size L";
+                        size_text = "Nam L";
                         break;
                     case 4:
-                        size_text = "Size XL";
+                        size_text = "Nam XL";
                         break;
                     case 5:
-                        size_text = "Size XXL";
+                        size_text = "Nam XXL";
                         break;
                     case 6:
-                        size_text = "Size XXXL";
+                        size_text = "Nam XXXL";
+                        break;
+                    case 7:
+                        size_text = "Nữ S";
+                        break;
+                    case 8:
+                        size_text = "Nữ M";
+                        break;
+                    case 9:
+                        size_text = "Nữ L";
+                        break;
+                    case 10:
+                        size_text = "Nữ XL";
+                        break;
+                    case 11:
+                        size_text = "Nữ XXL";
+                        break;
+                    case 12:
+                        size_text = "Nữ XXXL";
                 }
                 document.getElementById("size").value = size_text;
 
@@ -95,7 +113,7 @@
         </div>
         <div style="clear: both; display: block; height: 10px"></div>
 <!--        <input type="submit" class="btn btn-success" value="Đã nhận"/>-->
-        <a th:href="@{/receive?id={id}(id=${student.id})}" th:text="${student.received} ? 'Đã nhận' : 'Chưa nhận'" class="btn btn-success" id="receive-btn"></a>
+        <a th:href="@{/receive?id={id}(id=${student.id})}" th:text="${student.received} ? 'Đã nhận áo' : 'Chưa nhận áo'" class="btn btn-success" id="receive-btn"></a>
     </form>
 </div>
 </body>

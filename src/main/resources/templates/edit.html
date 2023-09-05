@@ -33,7 +33,7 @@
     <h1>Chỉnh sửa</h1>
     <form th:object="${student}" th:action="@{save}" action="#" method="post">
         <div class="form-group row">
-            <div class="col-sm-4">
+            <div class="col-sm-6">
                 <input type="hidden" th:field="*{id}">
                 <div>
                     <label th:for="name">Họ và Tên:</label>
@@ -82,12 +82,18 @@
                 <div>
                     <label th:for="size">Size áo:</label>
                     <select class="form-select" th:field="*{size}" aria-label="Default select example">
-                        <option th:value="1">Size S</option>
-                        <option th:value="2">Size M</option>
-                        <option th:value="3">Size L</option>
-                        <option th:value="4">Size XL</option>
-                        <option th:value="5">Size XXL</option>
-                        <option th:value="6">Size XXXL</option>
+                        <option th:value="1">Nam S</option>
+                        <option th:value="2">Nam M</option>
+                        <option th:value="3">Nam L</option>
+                        <option th:value="4">Nam XL</option>
+                        <option th:value="5">Nam XXL</option>
+                        <option th:value="6">Nam XXXL</option>
+                        <option th:value="7">Nữ S</option>
+                        <option th:value="8">Nữ M</option>
+                        <option th:value="9">Nữ L</option>
+                        <option th:value="10">Nữ XL</option>
+                        <option th:value="11">Nữ XXL</option>
+                        <option th:value="12">Nữ XXXL</option>
                     </select>
                 </div>
                 <div style="clear: both; display: block; height: 10px"></div>
@@ -96,10 +102,10 @@
                     <textarea type="textarea" th:field="*{note}" class="form-control" placeholder="Ghi chú" rows="5"></textarea>
                 </div>
                 <div style="clear: both; display: block; height: 10px"></div>
-                <a th:href="@{/receive?id={id}(id=${student.id})}" th:text="${student.received} ? 'Đã nhận' : 'Chưa nhận'" class="btn btn-primary" id="receive-btn"></a>
-                <div style="clear: both; display: block; height: 50px"></div>
+                <a th:href="@{/receive?id={id}(id=${student.id})}" th:text="${student.received} ? 'Đã nhận áo' : 'Chưa nhận áo'" class="btn btn-primary" id="receive-btn"></a>
+<!--                <div style="clear: both; display: block; height: 50px"></div>-->
             </div>
-            <img class="col-sm-8" th:src="@{https://chart.googleapis.com/chart(cht=qr, chs=200x200, chl=*{verificationCode})}">
+            <img class="col-sm-6" th:src="@{https://chart.googleapis.com/chart(cht=qr, chs=500x500, chl=*{verificationCode})}">
         </div>
         <input type="submit" class="btn btn-success" value="Lưu lại"/>
         <a th:href="@{/delete?id={id}(id=*{id})}" class="btn btn-danger">Xóa</a>

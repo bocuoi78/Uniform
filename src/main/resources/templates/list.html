@@ -106,7 +106,7 @@
             <td th:text="${student.birthday}"></td>
             <td th:class="${student.size}"></td>
             <td>
-                <a th:href="@{/receive?id={id}(id=${student.id})}" th:text="${student.received} ? 'Đã nhận' : 'Chưa nhận'" class="btn btn-secondary" id="receive-btn"></a>
+                <a th:href="@{/receive?id={id}(id=${student.id})}" th:text="${student.received} ? 'Đã nhận áo' : 'Chưa nhận áo'" class="btn btn-secondary" id="receive-btn"></a>
             </td>
             <td>
                 <a th:href="@{/edit?id={id}(id=${student.id})}" class="btn btn-primary">Edit</a>
@@ -117,27 +117,51 @@
     <script th:inline="javascript">
         const s1 = document.getElementsByClassName("1")
         for(var s in s1) {
-            s1[s].innerHTML = "S";
+            s1[s].innerHTML = "Nam S";
         }
         const s2 = document.getElementsByClassName("2")
         for(var s in s2) {
-            s2[s].innerHTML = "M";
+            s2[s].innerHTML = "Nam M";
         }
         const s3 = document.getElementsByClassName("3")
         for(var s in s3) {
-            s3[s].innerHTML = "L";
+            s3[s].innerHTML = "Nam L";
         }
         const s4 = document.getElementsByClassName("4")
         for(var s in s4) {
-            s4[s].innerHTML = "XL";
+            s4[s].innerHTML = "Nam XL";
         }
         const s5 = document.getElementsByClassName("5")
         for(var s in s5) {
-            s5[s].innerHTML = "XXL";
+            s5[s].innerHTML = "Nam XXL";
         }
         const s6 = document.getElementsByClassName("6")
         for(var s in s6) {
-            s6[s].innerHTML = "XXXL";
+            s6[s].innerHTML = "Nam XXXL";
+        }
+        const s7 = document.getElementsByClassName("7")
+        for(var s in s7) {
+            s7[s].innerHTML = "Nữ S";
+        }
+        const s8 = document.getElementsByClassName("8")
+        for(var s in s8) {
+            s8[s].innerHTML = "Nữ M";
+        }
+        const s9 = document.getElementsByClassName("9")
+        for(var s in s9) {
+            s9[s].innerHTML = "Nữ L";
+        }
+        const s10 = document.getElementsByClassName("10")
+        for(var s in s10) {
+            s10[s].innerHTML = "Nữ XL";
+        }
+        const s11 = document.getElementsByClassName("11")
+        for(var s in s11) {
+            s11[s].innerHTML = "Nữ XXL";
+        }
+        const s12 = document.getElementsByClassName("12")
+        for(var s in s12) {
+            s12[s].innerHTML = "Nữ XXXL";
         }
     </script>
 </div>
