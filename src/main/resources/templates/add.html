@@ -43,7 +43,7 @@
             <div style="clear: both; display: block; height: 10px"></div>
             <div>
                 <label th:for="phone">Số điện thoại:</label>
-                <input type="text" th:field="*{phone}" class="form-control" placeholder="Số điện thoại"/>
+                <input type="tel" th:field="*{phone}" class="form-control" placeholder="Số điện thoại" pattern="[0-9]{10}"/>
             </div>
             <div style="clear: both; display: block; height: 10px"></div>
             <div>
